@@ -247,7 +247,8 @@ document.addEventListener("DOMContentLoaded", function () {
         <p><strong>Minimum Qualification:</strong> ${job.minQualification}</p>
         <p><strong>Description:</strong> ${job.description}</p>
         <button onclick="applyForJob('${job._id}')">Apply</button>
-        <button onclick="viewApplicants('${job._id}')">See Applicants</button>
+        <button onclick="viewApplicants('${job._id}', this)">See Applicants</button>
+        <button onclick="readOutLoud('${job.description}')">Read Out Loud</button>
       `;
       jobListings.appendChild(jobCard);
     });
@@ -378,18 +379,24 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // View Applicants for a Job
-  window.viewApplicants = async function (jobId) {
+  window.viewApplicants = async function (jobId, button) {
     try {
       const response = await fetch(`http://localhost:5000/api/jobs/${jobId}/applicants`);
       const applicants = await response.json();
-      displayApplicants(applicants);
+      displayApplicants(applicants, button);
     } catch (err) {
       console.error("Failed to fetch applicants", err);
     }
   };
 
   // Display Applicants
-  function displayApplicants(applicants) {
+  function displayApplicants(applicants, button) {
+    // Remove any existing applicant lists
+    const existingApplicantList = document.querySelector(".applicants-list");
+    if (existingApplicantList) {
+      existingApplicantList.remove();
+    }
+
     const applicantsList = document.createElement("div");
     applicantsList.className = "applicants-list";
     applicantsList.innerHTML = "<h3>Applicants:</h3>";
@@ -404,7 +411,10 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
       applicantsList.appendChild(applicantCard);
     });
-    jobListings.appendChild(applicantsList);
+
+    // Insert the applicants list just after the job card
+    const jobCard = button.closest(".job-card");
+    jobCard.insertAdjacentElement("afterend", applicantsList);
   }
 
   // Display User Profile
@@ -449,4 +459,15 @@ document.addEventListener("DOMContentLoaded", function () {
     jobListerSection.classList.add("hidden");
     jobApplicationForm.classList.add("hidden");
   }
+
+  // Read Out Loud Feature
+  window.readOutLoud = function (text) {
+    const speech = new SpeechSynthesisUtterance();
+    speech.text = text;
+    speech.volume = 1;
+    speech.rate = 1;
+    speech.pitch = 1;
+    speech.lang = i18next.language; // Use the current language
+    window.speechSynthesis.speak(speech);
+  };
 });
