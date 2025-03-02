@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Employment Bridging Platform</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1 data-i18n="platformTitle">Local Employment Bridging Platform</h1>
+    <p data-i18n="platformDescription">Connecting MSME-trained individuals with local job opportunities.</p>
+    <div class="language-switcher">
+      <button onclick="changeLanguage('en')">English</button>
+      <button onclick="changeLanguage('hi')">हिंदी</button>
+      <button onclick="changeLanguage('ta')">தமிழ்</button>
+    </div>
+    <div id="profileIconContainer" class="hidden"></div>
+  </header>
+
+  <main>
+    <!-- Intro Section -->
+    <section id="introSection">
+      <h2 data-i18n="welcome">Welcome to Our Platform</h2>
+      <p data-i18n="platformDescription">This platform is designed to help MSME-trained individuals find employment opportunities in their local areas. Whether you're a job seeker or an employer, we've got you covered!</p>
+      <div class="options">
+        <button id="loginBtn" data-i18n="login">Login</button>
+        <button id="signupBtn" data-i18n="signup">Sign Up</button>
+      </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="loginSection" class="hidden">
+      <h2 data-i18n="login">Login</h2>
+      <form id="loginForm">
+        <label for="loginEmail" data-i18n="email">Email:</label>
+        <input type="email" id="loginEmail" required>
+        <label for="loginPassword" data-i18n="password">Password:</label>
+        <input type="password" id="loginPassword" required>
+        <button type="submit" data-i18n="loginButton">Login</button>
+      </form>
+    </section>
+
+    <!-- Signup Section -->
+    <section id="signupSection" class="hidden">
+      <h2 data-i18n="signup">Sign Up</h2>
+      <form id="signupForm">
+        <label for="signupName" data-i18n="fullName">Full Name:</label>
+        <input type="text" id="signupName" required>
+        <label for="signupEmail" data-i18n="email">Email:</label>
+        <input type="email" id="signupEmail" required>
+        <label for="signupPassword" data-i18n="password">Password:</label>
+        <input type="password" id="signupPassword" required>
+        <button type="submit" data-i18n="signupButton">Sign Up</button>
+      </form>
+    </section>
+
+    <!-- Homepage Section -->
+    <section id="homepage" class="hidden">
+      <h2 data-i18n="welcome">Welcome to Our Platform</h2>
+      <p data-i18n="platformDescription">This platform is designed to help MSME-trained individuals find employment opportunities in their local areas. Whether you're a job seeker or an employer, we've got you covered!</p>
+      <p data-i18n="howItWorks">How it works:</p>
+      <ul>
+        <li data-i18n="jobSeekerDescription">Job Seekers: Browse job listings, apply for jobs, and upload your resume.</li>
+        <li data-i18n="jobListerDescription">Job Listers: Post job openings and find skilled candidates.</li>
+      </ul>
+      <div class="options">
+        <button id="jobSeekerBtn" data-i18n="jobSeeker">Job Seeker</button>
+        <button id="jobListerBtn" data-i18n="jobLister">Job Lister</button>
+      </div>
+    </section>
+
+    <!-- Job Seeker Section -->
+    <section id="jobSeekerSection" class="hidden">
+      <h2 data-i18n="jobListings">Job Listings</h2>
+      <div class="filters">
+        <input type="text" id="filterLocation" placeholder="Filter by Location">
+        <input type="text" id="filterDistrict" placeholder="Filter by District">
+        <input type="text" id="filterSalary" placeholder="Filter by Salary">
+        <input type="text" id="filterSkills" placeholder="Filter by Skills">
+        <button id="applyFilters">Apply Filters</button>
+      </div>
+      <div id="jobListings">
+        <!-- Job listings will be dynamically added here -->
+      </div>
+    </section>
+
+    <!-- Job Application Form -->
+    <section id="jobApplicationForm" class="hidden">
+      <h2 data-i18n="applyForJob">Apply for Job</h2>
+      <form id="applicationForm">
+        <label for="name" data-i18n="fullName">Full Name:</label>
+        <input type="text" id="name" required>
+        <label for="phone" data-i18n="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phone" required>
+        <label for="resume" data-i18n="uploadResume">Upload Resume:</label>
+        <input type="file" id="resume" accept=".pdf,.doc,.docx" required>
+        <button type="submit" data-i18n="submitApplication">Submit Application</button>
+      </form>
+    </section>
+
+    <!-- Job Lister Section -->
+    <section id="jobListerSection" class="hidden">
+      <h2 data-i18n="postJob"><center>Post a Job</center></h2>
+      <form id="jobPostForm">
+        <label for="jobTitle" data-i18n="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" required>
+        <label for="companyName" data-i18n="companyName">Company Name:</label>
+        <input type="text" id="companyName" required>
+        <label for="jobDescription" data-i18n="jobDescription">Job Description:</label>
+        <textarea id="jobDescription" required></textarea>
+        <label for="jobLocation" data-i18n="location">Location:</label>
+        <input type="text" id="jobLocation" required>
+        <label for="jobDistrict" data-i18n="district">District:</label>
+        <input type="text" id="jobDistrict" required>
+        <label for="jobSalary" data-i18n="salary">Salary:</label>
+        <input type="text" id="jobSalary" required>
+        <label for="jobSkills" data-i18n="skills">Skills Required:</label>
+        <input type="text" id="jobSkills" required>
+        <label for="experienceRequired" data-i18n="experienceRequired">Experience Required:</label>
+        <input type="text" id="experienceRequired" required>
+        <label for="minQualification" data-i18n="minQualification">Minimum Qualification:</label>
+        <input type="text" id="minQualification" required>
+        <button type="submit" data-i18n="postJobButton">Post Job</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Local Employment Bridging Platform</p>
+  </footer>
+
+  <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
